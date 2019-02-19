@@ -13,7 +13,7 @@ rawCapture = PiRGBArray(camera, size=(640, 480))
 
 time.sleep(0.1)
 
-cap = cv2.VideoCapture(0)
+#cap = cv2.VideoCapture(0)
 
 id_s = []  # list to store SIM ID, Aruco ID pair
 
@@ -29,7 +29,7 @@ if __name__ == '__main__':
         det_aruco_list = aruco_lib.detect_Aruco(image)
         if det_aruco_list:
             print('Arduco detected')
-            image = aruco_lib.mark_Aruco(frame, det_aruco_list)
+            #image = aruco_lib.mark_Aruco(frame, det_aruco_list)
             robot_state = aruco_lib.calculate_Robot_State(image, det_aruco_list)
             id_raw = robot_state.keys()
             for i in id_raw:
