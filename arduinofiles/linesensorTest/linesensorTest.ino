@@ -21,10 +21,10 @@ int motorB1 = 6; // Pin 10 of L293
 int motorB2 = 9;
 
 
-int velrm = 250; // Speed Of Motors (0-255)
-int vellm = 250; //speed while turning as 50 isnt sufficient.
-int velright = 200;
-int velleft =200;
+int vellm = 250; // Speed Of Motors (0-255)
+int velrm = 250; //speed while turning as 50 isnt sufficient.
+int velleft = 150;
+int velright =150;
 
 void forward(){
   analogWrite(motorA1, velrm);
