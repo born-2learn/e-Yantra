@@ -34,7 +34,7 @@ void forward(){
     Serial.println("Forward");
 }
 void right(){
-  analogWrite(motorA1, velright);
+  analogWrite(motorA1, velleft);
     analogWrite(motorA2, 0);
     analogWrite(motorB1, 0);
     analogWrite(motorB2, velright);
@@ -44,16 +44,16 @@ void right(){
 void left(){
   analogWrite(motorA1, 0);
     analogWrite(motorA2, velleft);
-    analogWrite(motorB1, velleft);
+    analogWrite(motorB1, velright);
     analogWrite(motorB2, 0);
     state=2;
     Serial.println("Left");
 }
 void back(){
    analogWrite(motorA1, 0);
-    analogWrite(motorA2, velrm);
+    analogWrite(motorA2, vellm);
     analogWrite(motorB1, 0);
-    analogWrite(motorB2, vellm);
+    analogWrite(motorB2, velrm);
     Serial.println("Backward");
 }
 void stop_car(){
@@ -83,12 +83,12 @@ void loop() {
     forward();
    
    }
-   if(L<LT&&R>RT)
+   if(L<LT&&R>RT&&M<MT)
    {
     right();
    
    }
-   if(L>LT&&R<RT)
+   if(L>LT&&R<RT&&M<MT)
    {
     left();
    
