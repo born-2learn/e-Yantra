@@ -7,6 +7,7 @@ int Mid = 0;
 int Rig = 0;
 int value = 0;
 
+
 void setup() {
   Serial.begin(9600);
 
