@@ -1,7 +1,7 @@
 
-#define BL 190
-#define BM 315
-#define BR 392
+#define LT 100
+#define RT 100
+#define MT 100
 #define OT 500
 
 int state=0;
@@ -9,9 +9,9 @@ int state=0;
 int analogPin1 = 1;  
 int analogPin2 = 2;
 int analogPin3 = 3;
-int Lef = 0;
-int Mid = 0;
-int Rig = 0;
+int L = 0;
+int M = 0;
+int R = 0;
 int value = 0;
 
 
@@ -65,7 +65,10 @@ void stop_car(){
 
 void setup() {
   Serial.begin(9600);
-
+    pinMode(3,OUTPUT);
+    pinMode(4,OUTPUT);
+    pinMode(6,OUTPUT);
+    pinMode(9,OUTPUT);
   // put your setup code here, to run once:
 
 }
@@ -75,32 +78,33 @@ void loop() {
   lineSenor();
       
 
-   if(Lef<BL&&Mid>BM&&Rig<BR)
+   if(L<LT&&M>MT&&R<RT)
    {
     forward();
    
    }
-   if(Lef>BL&&Rig<BR)
+   if(L<LT&&R>RT)
    {
     right();
    
    }
-   if(Lef<BL&&Rig>BR)
+   if(L>LT&&R<RT)
    {
     left();
    
    }
-   if(Lef<BL&&Mid<BM&&Rig<BR)
+   if(L<LT&&M<MT&&R<RT)
    {
     if(state==1){
       left();
     }
-    else if(state==2){
+    if(state==2){
       right();
     }
-    else{
+    
+   }
+   if(L>LT&&L>RT&&M>MT){
     stop_car();
-    }
    }
    
 }
@@ -109,17 +113,17 @@ void lineSenor()
   //Serial.print("you you you");
   //digitalWrite(13, HIGH);
   //Serial.println("me me me");
-  Lef = analogRead(analogPin1); // read the input pin
-  Mid = analogRead(analogPin2);     // read the input pin
-  Rig = analogRead(analogPin3);  // read the input pin
+  R = analogRead(analogPin1); // read the input pin
+  M = analogRead(analogPin2);     // read the input pin
+  L = analogRead(analogPin3);  // read the input pin
  // value = (value1+value2+value3)/3;
  // Serial.println(value);
  
  Serial.print("Left: ");
-  Serial.print(Lef);
+  Serial.print(L);
    Serial.print(" Center: ");
-    Serial.print(Mid);
+    Serial.print(M);
      Serial.print(" Right: ");
-      Serial.print(Rig);
+      Serial.print(R);
       Serial.println();
 }
