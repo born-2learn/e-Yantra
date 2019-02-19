@@ -3,7 +3,7 @@ from picamera import PiCamera
 import cv2
 import time
 import csv
-from opencvtest import aruco_lib
+import aruco_lib
 
 
 camera = PiCamera()

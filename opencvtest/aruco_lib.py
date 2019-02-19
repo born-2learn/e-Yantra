@@ -73,11 +73,13 @@ def mark_Aruco(img, aruco_list):  # function to mark the centre and display the 
         orient_centre = tuple((dict_entry[0] + dict_entry[1]) / 2)
         # print centre
         # print orient_centre
+        '''
         cv2.circle(img, centre, 1, (0, 0, 255), 8)
         cv2.circle(img, tuple(dict_entry[0]), 1, (0, 0, 255), 8)
         cv2.circle(img, tuple(dict_entry[1]), 1, (0, 255, 0), 8)
         cv2.circle(img, tuple(dict_entry[2]), 1, (255, 0, 0), 8)
         cv2.circle(img, orient_centre, 1, (0, 0, 255), 8)
+        '''
         cv2.line(img, centre, orient_centre, (255, 0, 0), 4)  # marking the centre of aruco
         cv2.putText(img, str(key), (int(centre[0] + 20), int(centre[1])), font, 1, (0, 0, 255), 2,
                     cv2.LINE_AA)  # displaying the idno
