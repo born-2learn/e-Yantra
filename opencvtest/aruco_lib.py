@@ -81,8 +81,7 @@ def mark_Aruco(img, aruco_list):  # function to mark the centre and display the 
         cv2.circle(img, orient_centre, 1, (0, 0, 255), 8)
         '''
         #cv2.line(img, centre, orient_centre, (255, 0, 0), 4)  # marking the centre of aruco
-        cv2.putText(img, str(key), (int(centre[0] + 20), int(centre[1])), font, 1, (0, 0, 255), 2,
-                    cv2.LINE_AA)  # displaying the idno
+        #cv2.putText(img, str(key), (int(centre[0] + 20), int(centre[1])), font, 1, (0, 0, 255), 2,cv2.LINE_AA)  # displaying the idno
     return img
 
 
@@ -99,9 +98,8 @@ def calculate_Robot_State(img, aruco_list):  # gives the state of the bot (centr
         centre = tuple(centre)
         # print centre
         angle = angle_calculate(pt1, pt2)
-        cv2.putText(img, str(angle), (int(centre[0] - 80), int(centre[1])), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
-        robot_state[key] = (int(centre[0]), int(centre[1]),
-                            angle)  # HOWEVER IF YOU ARE SCALING IMAGE AND ALL...THEN BETTER INVERT X AND Y...COZ THEN ONLY THE RATIO BECOMES SAME
+        #cv2.putText(img, str(angle), (int(centre[0] - 80), int(centre[1])), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
+        robot_state[key] = (int(centre[0]), int(centre[1]),angle)  # HOWEVER IF YOU ARE SCALING IMAGE AND ALL...THEN BETTER INVERT X AND Y...COZ THEN ONLY THE RATIO BECOMES SAME
     print(robot_state)
 
     return robot_state

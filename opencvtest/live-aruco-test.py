@@ -28,6 +28,7 @@ if __name__ == '__main__':
 
         det_aruco_list = aruco_lib.detect_Aruco(image)
         if det_aruco_list:
+            print('Arduco detected')
             image = aruco_lib.mark_Aruco(frame, det_aruco_list)
             robot_state = aruco_lib.calculate_Robot_State(image, det_aruco_list)
             id_raw = robot_state.keys()
@@ -35,6 +36,7 @@ if __name__ == '__main__':
                 if i not in ids:
                     ids.append(i)
                     ids.sort()
+            print(ids)
         # show the frame
         cv2.imshow("Frame", image)
         key = cv2.waitKey(1) & 0xFF
