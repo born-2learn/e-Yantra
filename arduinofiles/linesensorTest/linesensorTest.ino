@@ -1,7 +1,7 @@
 
-#define LT 100
-#define RT 100
-#define MT 100
+#define LT 80
+#define RT 80
+#define MT 80
 #define OT 500
 
 int state=0;
@@ -21,10 +21,10 @@ int motorB1 = 6; // Pin 10 of L293
 int motorB2 = 9;
 
 
-int vellm = 250; // Speed Of Motors (0-255)
-int velrm = 250; //speed while turning as 50 isnt sufficient.
-int velleft = 150;
-int velright =150;
+int vellm = 160; // Speed Of Motors (0-255)
+int velrm = 160; //speed while turning as 50 isnt sufficient.
+int velleft = 90;
+int velright =90;
 
 void forward(){
   analogWrite(motorA1, velrm);
@@ -75,12 +75,14 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
   lineSenor();
       
 
    if(L<LT&&M>MT&&R<RT)
    {
     forward();
+    state=0;
    
    }
    if(L<LT&&R>RT&&M<MT)
@@ -91,25 +93,29 @@ void loop() {
    if(L>LT&&R<RT&&M<MT)
    {
     left();
+    state=0;
    
    }
    if(L<LT&&M<MT&&R<RT)
    {
     if(state==1){
       left();
+      state=0;
     }
     if(state==2){
       right();
+      state=0;
     }
     
    }
-   if(L>LT&&L>RT&&M>MT){
+   if((L>LT&&R>RT)||(R>RT&&M>MT)||(L>LT&&M>MT)){
     stop_car();
    }
    
 }
 void lineSenor()
 {
+ 
   //Serial.print("you you you");
   //digitalWrite(13, HIGH);
   //Serial.println("me me me");
