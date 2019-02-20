@@ -100,7 +100,7 @@ def calculate_Robot_State(img, aruco_list):  # gives the state of the bot (centr
         angle = angle_calculate(pt1, pt2)
         #cv2.putText(img, str(angle), (int(centre[0] - 80), int(centre[1])), font, 1, (0, 0, 255), 2, cv2.LINE_AA)
         robot_state[key] = (int(centre[0]), int(centre[1]),angle)  # HOWEVER IF YOU ARE SCALING IMAGE AND ALL...THEN BETTER INVERT X AND Y...COZ THEN ONLY THE RATIO BECOMES SAME
-    print(robot_state)
+    #print(robot_state)
 
     return robot_state
 
