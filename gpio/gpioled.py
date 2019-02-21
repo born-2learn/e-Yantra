@@ -92,4 +92,6 @@ Use the format: color on/color off""")
 
 def main():
     while True:
-        cmd = raw_input("-->")
+        cmd = input("-->")
+
+main()
