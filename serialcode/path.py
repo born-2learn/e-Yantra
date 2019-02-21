@@ -1,4 +1,6 @@
 import serial
+import arucoid
+
 
 '''0
 tree_array[0]
@@ -29,13 +31,13 @@ class path:
     intermediateArray = []  # stores all codes deciphered from aruco markers
     pathArray = []
     stateCN = 0# can take values 0-straight, 1-right 2 left 3 backward facing
-    def __init__(self):
+    def __init__(self,ids):
 
         self.tree_array = []
         self.ah = [0, 1, 2, 3]
         self.serv2 = [None, 'H', 'L', 'W']
         self.serv1 = [None, 'H', 'L', 'W']
-        self.arucoMarkers = [4, 56, 121, 194]  # array to store all aruco codes
+        self.arucoMarkers = ids#[4, 56, 121, 194]  # array to store all aruco codes
         self.stateCN = 0  # 0-straight, 1-right 2-left 3-reverse
         self.anthill = [x for x in range(5)]
         self.queenbee=None
@@ -90,7 +92,10 @@ class path:
 
 
 if __name__ == '__main__':
-    obj=path()
+    ids = arucoid.get_aruco_list()
+    print(ids)
+    obj=path(ids)
+
 
 
 
