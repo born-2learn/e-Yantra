@@ -1,7 +1,12 @@
 import RPi.GPIO as GPIO
 import time
-
-colors = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00, 0x00FFFF, 0xFF00FF, 0xFFFFFF, 0x9400D3]
+'''
+colors[0]-->Red
+colors[1]-->Green
+colors[2]-->Blue
+colors[3]-->Red+Green
+'''
+colors = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00]
 pins = {'pin_R':11, 'pin_G':12, 'pin_B':13}  # pins is a dict
 
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
