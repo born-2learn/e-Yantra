@@ -1,21 +1,95 @@
+import time, sys
 import RPi.GPIO as GPIO
-GPIO.setmode(GPIO.BCM)
-RED = 25
-GREEN = 24
-BLUE = 23
-GPIO.setup(RED,GPIO.OUT)
-GPIO.output(RED,0)
-GPIO.setup(GREEN,GPIO.OUT)
-GPIO.output(GREEN,0)
-GPIO.setup(BLUE,GPIO.OUT)
-GPIO.output(BLUE,0)
-try:
-  while (True):
-      request = input('RGB')
-      print(request)
-      if (len(request) == 3):
-          GPIO.output(RED, int(request[0]))
-          GPIO.output(GREEN, int(request[1]))
-          GPIO.output(BLUE, int(request[2]))
-except KeyboardInterrupt:
-    GPIO.cleanup()
+
+redPin = 2  # Set to appropriate GPIO
+greenPin = 3  # Should be set in the
+bluePin = 4  # GPIO.BOARD format
+
+
+def blink(pin):
+    GPIO.setmode(GPIO.BOARD)
+
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, GPIO.HIGH)
+
+
+def turnOff(pin):
+    GPIO.setmode(GPIO.BOARD)
+    GPIO.setup(pin, GPIO.OUT)
+    GPIO.output(pin, GPIO.LOW)
+
+
+def redOn():
+    blink(redPin)
+
+
+def redOff():
+    turnOff(redPin)
+
+
+def greenOn():
+    blink(greenPin)
+
+
+def greenOff():
+    turnOff(greenPin)
+
+
+def blueOn():
+    blink(bluePin)
+
+
+def blueOff():
+    turnOff(bluePin)
+
+
+def yellowOn():
+    blink(redPin)
+    blink(greenPin)
+
+
+def yellowOff():
+    turnOff(redPin)
+    turnOff(greenPin)
+
+
+def cyanOn():
+    blink(greenPin)
+    blink(bluePin)
+
+
+def cyanOff():
+    turnOff(greenPin)
+    turnOff(bluePin)
+
+
+def magentaOn():
+    blink(redPin)
+    blink(bluePin)
+
+
+def magentaOff():
+    turnOff(redPin)
+    turnOff(bluePin)
+
+
+def whiteOn():
+    blink(redPin)
+    blink(greenPin)
+    blink(bluePin)
+
+
+def whiteOff():
+    turnOff(redPin)
+    turnOff(greenPin)
+    turnOff(bluePin)
+
+
+print("""Ensure the following GPIO connections: R-18, G-22, B-37
+Colors: Red, Green, Blue, Yellow, Cyan, Magenta, and White
+Use the format: color on/color off""")
+
+
+def main():
+    while True:
+        cmd = raw_input("-->")
