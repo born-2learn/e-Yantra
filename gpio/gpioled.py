@@ -1,10 +1,21 @@
 import RPi.GPIO as GPIO
-import time
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
-GPIO.setup(18,GPIO.OUT)
-print("LED on")
-GPIO.output(18,GPIO.HIGH)
-time.sleep(5)
-print("LED off")
-GPIO.output(18,GPIO.LOW)
+RED = 25
+GREEN = 24
+BLUE = 23
+GPIO.setup(RED,GPIO.OUT)
+GPIO.output(RED,0)
+GPIO.setup(GREEN,GPIO.OUT)
+GPIO.output(GREEN,0)
+GPIO.setup(BLUE,GPIO.OUT)
+GPIO.output(BLUE,0)
+try:
+  while (True):
+      request = input('RGB')
+      print(request)
+      if (len(request) == 3):
+          GPIO.output(RED, int(request[0]))
+          GPIO.output(GREEN, int(request[1]))
+          GPIO.output(BLUE, int(request[2]))
+except KeyboardInterrupt:
+    GPIO.cleanup()
