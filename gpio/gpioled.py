@@ -6,7 +6,7 @@ colors[1]-->Green
 colors[2]-->Blue
 colors[3]-->Red+Green
 '''
-colors = [0xFF0000, 0x00FF00, 0x0000FF, 0xFFFF00]
+colors = [0xFF0000, 0x0000FF,0x00FF00,  0xFF00FF]
 pins = {'pin_R':11, 'pin_G':12, 'pin_B':13}  # pins is a dict
 
 GPIO.setmode(GPIO.BOARD)       # Numbers GPIOs by physical location
