@@ -47,16 +47,17 @@ try:
         # For anode RGB LED users, if you want to start with RED too the only thing to be done is defining RED as one and GREEN and BLUE as 100.
 
         for x in range(1, 101):
+            GREEN.ChangeDutyCycle(x)
 
-        # for changing the width of PWM, this command is used
+            # for anode LED users, just change x with 101-x
 
-        GREEN.ChangeDutyCycle(x)
+            # and for delay time.sleep is used. You can chance the duration of the colors with changing the time from here
 
-        # for anode LED users, just change x with 101-x
+            time.sleep(0.05)
 
-        # and for delay time.sleep is used. You can chance the duration of the colors with changing the time from here
 
-        time.sleep(0.05)
+
+
 
         for x in range(1, 101):
             RED.ChangeDutyCycle(101 - x)
