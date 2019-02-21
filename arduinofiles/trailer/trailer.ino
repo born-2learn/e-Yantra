@@ -62,6 +62,21 @@ void rotateright(){
     state=2;
     Serial.println("Right");
 }
+
+void Complete_turn()
+{
+  
+  
+  int ctr=0;
+  while(ctr!=4)
+  {
+    right();
+    lineStable();
+    ctr++;
+    
+  }
+  
+}
 void left(){
   analogWrite(motorA1, 0);
     analogWrite(motorA2, velleft);
@@ -142,8 +157,9 @@ void loop() {
     r='5';
     back();
     delay(500);
-    
-    
+  }
+  else if(r=='t'){
+    Complete_turn();
   }
   
  // Serial.println(r);
@@ -209,7 +225,8 @@ void lineSensor()
 
 void lineStable()
 {
- 
+ right();
+ delay(1000);
   R = analogRead(analogPin1); // read the input pin
   M = analogRead(analogPin2);     // read the input pin
   L = analogRead(analogPin3);  // read the input pin
@@ -223,13 +240,12 @@ void lineStable()
       Serial.print(R);
       Serial.println();
 
-      if(L<LT&&M>MT&&R<RT)
+      while(!(L<LT&&M>MT&&R<RT))
    {
-    //forward();
-    stop_car();
-    state=0;
+    R = analogRead(analogPin1); // read the input pin
+  M = analogRead(analogPin2);     // read the input pin
+  L = analogRead(analogPin3);  // read the input pin
    
-   }
    if(L<LT&&R>RT&&M<MT)
    {
     right();
@@ -253,7 +269,9 @@ void lineStable()
     }
     
    }
-   if((L>LT&&R>RT)||(R>RT&&M>MT)||(L>LT&&M>MT)){
-    stop_car();
-   }
+   
+}
+
+  stop_car();
+}
 }
