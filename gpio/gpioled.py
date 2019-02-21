@@ -40,9 +40,22 @@ def ledColor(val):
                 p_B.ChangeDutyCycle(100 - B_val)
 
         try:
-                setColor(colors[0])
-                time.sleep(1)
-                setColor(colors[4])
+                if val=='r':
+                        setColor(colors[0])
+                        time.sleep(1)
+                        setColor(colors[4])
+                elif val=='g':
+                        setColor(colors[1])
+                        time.sleep(1)
+                        setColor(colors[4])
+                if val=='b':
+                        setColor(colors[2])
+                        time.sleep(1)
+                        setColor(colors[4])
+                if val=='y':
+                        setColor(colors[3])
+                        time.sleep(1)
+                        setColor(colors[4])
         except KeyboardInterrupt:
                 p_R.stop()
                 p_G.stop()
