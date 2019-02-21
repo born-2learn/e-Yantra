@@ -116,7 +116,7 @@ def whiteOff():
 
 def main():
     while True:
-        cmd = raw_input("Choose an option:")
+        cmd = input("Choose an option:")
         # We define a new variable "cmd" to use later and set it equal to the user's input. It will also constantly prompt the user to choose an option.
 
         # Now an "if" statement that will run only if the user input exactly matches the text within the quotation marks. Note that here we use two "equal to" symbols. In Python, and indeed most languages, a single "equal to" is used to change the value of a variable while doubles are used to compare whether or not variable values match each other.
@@ -131,7 +131,7 @@ def main():
         elif cmd == "green on":
             greenOn()
 
-        elif cmd == "green off"
+        elif cmd == "green off":
             greenOff()
 
         elif cmd == "blue on":
