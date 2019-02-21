@@ -8,11 +8,11 @@ RUNNING = True
 
 #defining the pins
 
-green = 15
+green = 22
 
-red = 11
+red = 17
 
-blue = 13
+blue = 27
 
 #defining the pins as output
 
