@@ -144,7 +144,7 @@ def colorDetect(frame):
                 x = int(x)
                 y = int(y)
                 radius = int(radius)
-                print([x, y], radius)
+                print([x, y], radius,key)
                 M = cv2.moments(c)
                 # center = (int(M["m10"] / M["m00"]), int(M["m01"] / M["m00"]))
 
