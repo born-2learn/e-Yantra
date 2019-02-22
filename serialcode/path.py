@@ -92,8 +92,10 @@ class path:
 
 
 if __name__ == '__main__':
-    ids = arucoid.get_aruco_list()
-    print(ids)
+    ids=[4,56,121,194]
+    arucoid.getColorlist()
+    #ids = arucoid.get_aruco_list()
+    #print(ids)
     obj=path(ids)
 
 
