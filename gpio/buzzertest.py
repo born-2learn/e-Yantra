@@ -2,14 +2,18 @@ from gpiozero import Buzzer
 from gpiozero import LED
 from time import sleep
 
-red = LED(2)
-green = LED(3)
+red = LED(17)
+blue = LED(27)
+green = LED(4)
 buzzer = Buzzer(17)
 
 def ledOn():
     red.on()
     sleep(5)
     red.off()
+    blue.on()
+    sleep(5)
+    blue.off()
 
 def ringBuzzer():
     buzzer.on()
