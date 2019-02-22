@@ -1,7 +1,7 @@
 
-#define LT 80
-#define RT 80
-#define MT 80
+#define LT 100
+#define RT 120
+#define MT 150
 #define OT 500
 
 int state=0;
@@ -14,7 +14,9 @@ int M = 0;
 int R = 0;
 int value = 0;
 
-
+char r='5';
+char c='y';
+char stop_var='0';
 int motorA1 = 3; // Pin  2 of L293
 int motorA2 = 5; // Pin  7 of L293
 int motorB1 = 6; // Pin 10 of L293
@@ -40,6 +42,42 @@ void right(){
     analogWrite(motorB2, velright);
     state=1;
     Serial.println("Right");
+}
+void rotateleft(){
+  forward();
+  delay(400);
+  analogWrite(motorA1, 0);
+    analogWrite(motorA2, velleft);
+    analogWrite(motorB1, velright);
+    analogWrite(motorB2, 0);
+    state=1;
+    Serial.println("Left");
+}
+void rotateright(){
+  forward();
+  delay(400);
+  analogWrite(motorA1, velleft);
+    analogWrite(motorA2, 0);
+    analogWrite(motorB1, 0);
+    analogWrite(motorB2, velright);
+    state=2;
+    Serial.println("Right");
+}
+
+void Complete_turn()
+{
+  
+  
+  int ctr=0;
+  while(ctr<=4)
+  {
+    rotateright();
+    delay(500);
+    lineStable();
+    ctr++;
+    
+  }
+  
 }
 void left(){
   analogWrite(motorA1, 0);
@@ -74,12 +112,94 @@ void setup() {
 }
 
 void loop() {
+  if(stop_var=='0'){
+  r='5';
+  }
+  else{
+    r='0';
+  }
   // put your main code here, to run repeatedly:
+  if(Serial.available()>0){
+    r= Serial.read();
+    
+  }
+  if(r=='5'){
+  lineSensor();
+  //Serial.println("line sensor");
+  }
+    
+   else if(r=='0'){
+    stop_car();
+    Serial.println("Stop");
+    stop_var='1';
+    if(Serial.read()!='y')
+    {//Do Nothing
+      }
+    
+  }
+  else if(r=='1'){
+    r='5';
+    stop_var='0';
+    forward();
+    delay(500);
+    
+    
+    
+  }
+  else if(r=='2'){
+    r='5';
+    stop_var='0';
+    rotateright();
+    delay(500);
+    
+    
+    
+  }
+  else if(r=='3'){
+    r='5';
+    stop_var='0';
+    rotateleft();
+    
+    delay(1000);
+    
+   
+  }
+  else if(r=='4'){
+    r='5';
+    stop_var='0';
+    back();
+    delay(500);
+  }
+  else if(r=='t'){
+    Complete_turn();
+  }
   
-  lineSenor();
-      
+ // Serial.println(r);
+ 
+  
+ // lineSenor();
+      delay(10);
 
-   if(L<LT&&M>MT&&R<RT)
+   
+   
+}
+void lineSensor()
+{
+ 
+  R = analogRead(analogPin1); // read the input pin
+  M = analogRead(analogPin2);     // read the input pin
+  L = analogRead(analogPin3);  // read the input pin
+
+ 
+ Serial.print("Left: ");
+  Serial.print(L);
+   Serial.print(" Center: ");
+    Serial.print(M);
+     Serial.print(" Right: ");
+      Serial.print(R);
+      Serial.println();
+
+      if(L<LT&&M>MT&&R<RT)
    {
     forward();
     state=0;
@@ -93,7 +213,7 @@ void loop() {
    if(L>LT&&R<RT&&M<MT)
    {
     left();
-    state=0;
+    
    
    }
    if(L<LT&&M<MT&&R<RT)
@@ -111,19 +231,19 @@ void loop() {
    if((L>LT&&R>RT)||(R>RT&&M>MT)||(L>LT&&M>MT)){
     stop_car();
    }
+
    
 }
-void lineSenor()
+
+void lineStable()
 {
  
-  //Serial.print("you you you");
-  //digitalWrite(13, HIGH);
-  //Serial.println("me me me");
+ 
   R = analogRead(analogPin1); // read the input pin
   M = analogRead(analogPin2);     // read the input pin
   L = analogRead(analogPin3);  // read the input pin
- // value = (value1+value2+value3)/3;
- // Serial.println(value);
+  
+
  
  Serial.print("Left: ");
   Serial.print(L);
@@ -132,4 +252,39 @@ void lineSenor()
      Serial.print(" Right: ");
       Serial.print(R);
       Serial.println();
+
+      while(!(L<LT&&M>MT&&R<RT))
+   {
+    R = analogRead(analogPin1); // read the input pin
+  M = analogRead(analogPin2);     // read the input pin
+  L = analogRead(analogPin3);  // read the input pin
+   
+   if(L<LT&&R>RT&&M<MT)
+   {
+    right();
+   
+   }
+   if(L>LT&&R<RT&&M<MT)
+   {
+    left();
+    
+   
+   }
+   if(L<LT&&M<MT&&R<RT)
+   {
+    /*
+    if(state==1){
+      left();
+      state=0;
+    }
+    if(state==2){
+      right();
+      state=0;
+    }*/
+    right();
+    
+   }
+   
+}
+  stop_car();
 }

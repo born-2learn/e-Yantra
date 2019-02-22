@@ -5,6 +5,16 @@ import sys
 import math
 import imutils
 
+from gpiozero import Buzzer
+from gpiozero import LED
+from time import sleep
+
+def ringBuzzer():
+    buzzer = Buzzer(3)
+    buzzer.on()
+    sleep(5)
+    buzzer.off()
+
 '''
 functions in this file:
 * angle_calculate(pt1,pt2, trigger = 0) - function to return angle between two points

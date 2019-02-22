@@ -1,7 +1,17 @@
+#include<Servo.h>
+#define UP 90
+#define DOWN 35
 
-#define LT 100
-#define RT 120
-#define MT 150
+#define GRAB 45
+#define DROP 0
+
+Servo Arm,Grab;
+int arm, grab;
+const int pwm=150;
+
+#define LT 80
+#define RT 80
+#define MT 80
 #define OT 500
 
 int state=0;
@@ -103,6 +113,11 @@ void stop_car(){
 
 void setup() {
   Serial.begin(9600);
+  Arm.attach(10);
+  Grab.attach(11);
+  Serial.begin(9600);
+  Arm.write(15);
+  Grab.write(0);
     pinMode(3,OUTPUT);
     pinMode(4,OUTPUT);
     pinMode(6,OUTPUT);
@@ -132,13 +147,13 @@ void loop() {
     stop_car();
     Serial.println("Stop");
     stop_var='1';
-    if(Serial.read()!='y')
+   /* if(Serial.read()!='y')
     {//Do Nothing
-      }
+      }*/
     
   }
   else if(r=='1'){
-    r='5';
+    
     stop_var='0';
     forward();
     delay(500);
@@ -147,7 +162,7 @@ void loop() {
     
   }
   else if(r=='2'){
-    r='5';
+   
     stop_var='0';
     rotateright();
     delay(500);
@@ -165,7 +180,7 @@ void loop() {
    
   }
   else if(r=='4'){
-    r='5';
+   
     stop_var='0';
     back();
     delay(500);
@@ -173,7 +188,24 @@ void loop() {
   else if(r=='t'){
     Complete_turn();
   }
-  
+  else if(r=='7'){
+    //stop_var='1';
+    Serial.println("Down Grab");
+    Arm.write(DOWN);
+      Grab.write(GRAB);
+  }
+  else if(r=='8'){
+   // stop_var='1';
+   Serial.println("Arm UP");
+    Arm.write(UP);
+    
+  }
+  else if(r=='9'){
+    //stop_var='1';
+    Serial.println("down drop");
+    Arm.write(DOWN);
+      Grab.write(DROP);
+  }
  // Serial.println(r);
  
   
@@ -190,7 +222,7 @@ void lineSensor()
   M = analogRead(analogPin2);     // read the input pin
   L = analogRead(analogPin3);  // read the input pin
 
- 
+ /*
  Serial.print("Left: ");
   Serial.print(L);
    Serial.print(" Center: ");
@@ -198,7 +230,7 @@ void lineSensor()
      Serial.print(" Right: ");
       Serial.print(R);
       Serial.println();
-
+*/
       if(L<LT&&M>MT&&R<RT)
    {
     forward();
@@ -244,14 +276,14 @@ void lineStable()
   L = analogRead(analogPin3);  // read the input pin
   
 
- 
+/* 
  Serial.print("Left: ");
   Serial.print(L);
    Serial.print(" Center: ");
     Serial.print(M);
      Serial.print(" Right: ");
       Serial.print(R);
-      Serial.println();
+      Serial.println();*/
 
       while(!(L<LT&&M>MT&&R<RT))
    {
