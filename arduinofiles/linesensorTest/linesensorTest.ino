@@ -1,14 +1,14 @@
 
 #define LT 100
-#define RT 120
-#define MT 150
+#define RT 100
+#define MT 100
 #define OT 500
 
 int state=0;
 //state---0 stop 1-right 2-left
 int analogPin1 = 1;  
 int analogPin2 = 2;
-int analogPin3 = 3;
+int analogPin3 = 30;
 int L = 0;
 int M = 0;
 int R = 0;
@@ -23,10 +23,10 @@ int motorB1 = 6; // Pin 10 of L293
 int motorB2 = 9;
 
 
-int vellm = 160; // Speed Of Motors (0-255)
-int velrm = 160; //speed while turning as 50 isnt sufficient.
-int velleft = 90;
-int velright =90;
+int vellm = 200; // Speed Of Motors (0-255)
+int velrm = 200; //speed while turning as 50 isnt sufficient.
+int velleft = 120;
+int velright =120;
 
 void forward(){
   analogWrite(motorA1, velrm);
@@ -178,7 +178,7 @@ void loop() {
  
   
  // lineSenor();
-      delay(10);
+      //delay(50);
 
    
    
