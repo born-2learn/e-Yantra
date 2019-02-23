@@ -5,9 +5,9 @@ motorA1pin = 24
 motorA2pin = 23
 motorAenablePin = 25
 
-motorB1pin = 24
-motorB2pin = 23
-motorBenablePin = 25
+motorB1pin = 17
+motorB2pin = 27
+motorBenablePin = 22
 
 temp1 = 1
 
