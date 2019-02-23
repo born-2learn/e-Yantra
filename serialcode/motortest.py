@@ -1,13 +1,13 @@
 import RPi.GPIO as GPIO
 from time import sleep
 
-motorA1pin = 24
-motorA2pin = 23
-motorAenablePin = 25
+motorA1pin = 17
+motorA2pin = 27
+motorAenablePin = 22
 
-motorB1pin = 17
-motorB2pin = 27
-motorBenablePin = 22
+motorB1pin = 24
+motorB2pin = 23
+motorBenablePin = 25
 
 temp1 = 1
 
