@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 from time import sleep
+from serial import Serial
+ser = Serial('/dev/ttyUSB0', 9600)
 
 
 motorA1pin = 17
@@ -34,62 +36,65 @@ print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
-
+x = 48
 while (1):
+    if (ser.in_waiting > 0):
+        read_val = ser.read()
+        x = ord(read_val)
 
-    x = input()
 
-    if x == 'r':
+
+    if x == 114:
         print("run")
         if (temp1 == 1):
             GPIO.output(motorA1pin, GPIO.HIGH)
             GPIO.output(motorA2pin, GPIO.LOW)
             print("forward")
-            x = 'z'
+            x = 122
         else:
             GPIO.output(motorA1pin, GPIO.LOW)
             GPIO.output(motorA2pin, GPIO.HIGH)
             print("backward")
-            x = 'z'
+            x = 122
 
 
-    elif x == 's':
+    elif x == 48:
         print("stop")
         GPIO.output(motorA1pin, GPIO.LOW)
         GPIO.output(motorA2pin, GPIO.LOW)
-        x = 'z'
+        x = 122
 
-    elif x == 'f':
+    elif x == 49:
         print("forward")
         GPIO.output(motorA1pin, GPIO.HIGH)
         GPIO.output(motorA2pin, GPIO.LOW)
         temp1 = 1
-        x = 'z'
+        x = 122
 
-    elif x == 'b':
+    elif x == 52:
         print("backward")
         GPIO.output(motorA1pin, GPIO.LOW)
         GPIO.output(motorA2pin, GPIO.HIGH)
         temp1 = 0
         x = 'z'
 
-    elif x == 'l':
+    elif x == 108:
         print("low")
         mA.ChangeDutyCycle(25)
-        x = 'z'
+        x = 122
 
-    elif x == 'm':
+    elif x == 109:
         print("medium")
         mA.ChangeDutyCycle(50)
-        x = 'z'
+        x = 122
 
-    elif x == 'h':
+    elif x == 104:
         print("high")
         mA.ChangeDutyCycle(75)
-        x = 'z'
+        x = 122
 
 
-    elif x == 'e':
+    elif x == 113:
         GPIO.cleanup()
         break
 
