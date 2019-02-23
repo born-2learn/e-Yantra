@@ -30,74 +30,64 @@ GPIO.output(motorB2pin, GPIO.LOW)
 
 mA = GPIO.PWM(motorAenablePin, 1000)
 mB = GPIO.PWM(motorBenablePin, 1000)
-mA.start(25)
-mB.start(25)
+mA.start(75)
+mB.start(75)
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
 print("\n")
 x = 48
+y=True
 while (1):
     if (ser.in_waiting > 0):
         read_val = ser.read()
         x = ord(read_val)
+    if x==116:#t
+        y=True
 
+    if y:
+        if x == 48:  # 0
+            print("stop")
+            GPIO.output(motorA1pin, GPIO.LOW)
+            GPIO.output(motorA2pin, GPIO.LOW)
+            x = 122
+            y=False
 
-
-    if x == 114:
-        print("run")
-        if (temp1 == 1):
+        elif x == 49:  # 1
+            print("forward")
             GPIO.output(motorA1pin, GPIO.HIGH)
             GPIO.output(motorA2pin, GPIO.LOW)
-            print("forward")
+            temp1 = 1
             x = 122
-        else:
+        elif x == 50:  # 2
+            print("right")
             GPIO.output(motorA1pin, GPIO.LOW)
             GPIO.output(motorA2pin, GPIO.HIGH)
-            print("backward")
+            GPIO.output(motorA1pin, GPIO.HIGH)
+            GPIO.output(motorA2pin, GPIO.LOW)
+            temp1 = 1
+            x = 122
+        elif x == 51:  # 3
+            print("left")
+            GPIO.output(motorA1pin, GPIO.HIGH)
+            GPIO.output(motorA2pin, GPIO.LOW)
+            GPIO.output(motorA1pin, GPIO.LOW)
+            GPIO.output(motorA2pin, GPIO.HIGH)
+            temp1 = 1
             x = 122
 
+        elif x == 52:  # 4
+            print("backward")
+            GPIO.output(motorA1pin, GPIO.LOW)
+            GPIO.output(motorA2pin, GPIO.HIGH)
+            temp1 = 0
+            x = 'z'
 
-    elif x == 48:
-        print("stop")
-        GPIO.output(motorA1pin, GPIO.LOW)
-        GPIO.output(motorA2pin, GPIO.LOW)
-        x = 122
+    #elif x == 108:
+    #   print("low")
+    #  mA.ChangeDutyCycle(25)
+    # x = 122
 
-    elif x == 49:
-        print("forward")
-        GPIO.output(motorA1pin, GPIO.HIGH)
-        GPIO.output(motorA2pin, GPIO.LOW)
-        temp1 = 1
-        x = 122
-
-    elif x == 52:
-        print("backward")
-        GPIO.output(motorA1pin, GPIO.LOW)
-        GPIO.output(motorA2pin, GPIO.HIGH)
-        temp1 = 0
-        x = 'z'
-
-    elif x == 108:
-        print("low")
-        mA.ChangeDutyCycle(25)
-        x = 122
-
-    elif x == 109:
-        print("medium")
-        mA.ChangeDutyCycle(50)
-        x = 122
-
-    elif x == 104:
-        print("high")
-        mA.ChangeDutyCycle(75)
-        x = 122
-
-
-    elif x == 113:
+    elif x == 113:#q
         GPIO.cleanup()
         break
-
-    else:
-        print("<<<  wrong data  >>>")
-        print("please enter the defined data to continue.....")
