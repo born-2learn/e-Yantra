@@ -5,7 +5,8 @@ while 1:
     if(ser.in_waiting >0):
         input = ser.read()
 
-        input_number = chr(input)
+        input_number = ord(input)
 
-        print(input_number)
+        if(input_number==49):
+            print('true')
         #for i in range(0, 3):
