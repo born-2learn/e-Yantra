@@ -2,23 +2,33 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 motorA1pin = 24
-mototrA2pin = 23
+motorA2pin = 23
 motorAenablePin = 25
 
 motorB1pin = 24
-mototrB2pin = 23
+motorB2pin = 23
 motorBenablePin = 25
 
 temp1 = 1
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(, GPIO.OUT)
-GPIO.setup(in2, GPIO.OUT)
-GPIO.setup(en, GPIO.OUT)
-GPIO.output(in1, GPIO.LOW)
-GPIO.output(in2, GPIO.LOW)
-p = GPIO.PWM(en, 1000)
-p.start(25)
+GPIO.setup(motorA1pin, GPIO.OUT)
+GPIO.setup(motorA2pin, GPIO.OUT)
+GPIO.setup(motorAenablePin, GPIO.OUT)
+GPIO.output(motorA1pin, GPIO.LOW)
+GPIO.output(motorA2pin, GPIO.LOW)
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(motorB1pin, GPIO.OUT)
+GPIO.setup(motorB2pin, GPIO.OUT)
+GPIO.setup(motorBenablePin, GPIO.OUT)
+GPIO.output(motorB1pin, GPIO.LOW)
+GPIO.output(motorB2pin, GPIO.LOW)
+
+mA = GPIO.PWM(motorAenablePin, 1000)
+mB = GPIO.PWM(motorBenablePin, 1000)
+mA.start(25)
+mB.start(25)
 print("\n")
 print("The default speed & direction of motor is LOW & Forward.....")
 print("r-run s-stop f-forward b-backward l-low m-medium h-high e-exit")
@@ -31,50 +41,50 @@ while (1):
     if x == 'r':
         print("run")
         if (temp1 == 1):
-            GPIO.output(in1, GPIO.HIGH)
-            GPIO.output(in2, GPIO.LOW)
+            GPIO.output(motorA1pin, GPIO.HIGH)
+            GPIO.output(motorA2pin, GPIO.LOW)
             print("forward")
             x = 'z'
         else:
-            GPIO.output(in1, GPIO.LOW)
-            GPIO.output(in2, GPIO.HIGH)
+            GPIO.output(motorA1pin, GPIO.LOW)
+            GPIO.output(motorA2pin, GPIO.HIGH)
             print("backward")
             x = 'z'
 
 
     elif x == 's':
         print("stop")
-        GPIO.output(in1, GPIO.LOW)
-        GPIO.output(in2, GPIO.LOW)
+        GPIO.output(motorA1pin, GPIO.LOW)
+        GPIO.output(motorA2pin, GPIO.LOW)
         x = 'z'
 
     elif x == 'f':
         print("forward")
-        GPIO.output(in1, GPIO.HIGH)
-        GPIO.output(in2, GPIO.LOW)
+        GPIO.output(motorA1pin, GPIO.HIGH)
+        GPIO.output(motorA2pin, GPIO.LOW)
         temp1 = 1
         x = 'z'
 
     elif x == 'b':
         print("backward")
-        GPIO.output(in1, GPIO.LOW)
-        GPIO.output(in2, GPIO.HIGH)
+        GPIO.output(motorA1pin, GPIO.LOW)
+        GPIO.output(motorA2pin, GPIO.HIGH)
         temp1 = 0
         x = 'z'
 
     elif x == 'l':
         print("low")
-        p.ChangeDutyCycle(25)
+        mA.ChangeDutyCycle(25)
         x = 'z'
 
     elif x == 'm':
         print("medium")
-        p.ChangeDutyCycle(50)
+        mA.ChangeDutyCycle(50)
         x = 'z'
 
     elif x == 'h':
         print("high")
-        p.ChangeDutyCycle(75)
+        mA.ChangeDutyCycle(75)
         x = 'z'
 
 
