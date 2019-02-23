@@ -50,6 +50,8 @@ while (1):
             print("stop")
             GPIO.output(motorA1pin, GPIO.LOW)
             GPIO.output(motorA2pin, GPIO.LOW)
+            GPIO.output(motorB1pin, GPIO.LOW)
+            GPIO.output(motorB2pin, GPIO.LOW)
             x = 122
             y=False
 
@@ -57,22 +59,24 @@ while (1):
             print("forward")
             GPIO.output(motorA1pin, GPIO.HIGH)
             GPIO.output(motorA2pin, GPIO.LOW)
+            GPIO.output(motorB1pin, GPIO.HIGH)
+            GPIO.output(motorB2pin, GPIO.LOW)
             temp1 = 1
             x = 122
         elif x == 50:  # 2
             print("right")
             GPIO.output(motorA1pin, GPIO.LOW)
             GPIO.output(motorA2pin, GPIO.HIGH)
-            GPIO.output(motorA1pin, GPIO.HIGH)
-            GPIO.output(motorA2pin, GPIO.LOW)
+            GPIO.output(motorB1pin, GPIO.HIGH)
+            GPIO.output(motorB2pin, GPIO.LOW)
             temp1 = 1
             x = 122
         elif x == 51:  # 3
             print("left")
             GPIO.output(motorA1pin, GPIO.HIGH)
             GPIO.output(motorA2pin, GPIO.LOW)
-            GPIO.output(motorA1pin, GPIO.LOW)
-            GPIO.output(motorA2pin, GPIO.HIGH)
+            GPIO.output(motorB1pin, GPIO.LOW)
+            GPIO.output(motorB2pin, GPIO.HIGH)
             temp1 = 1
             x = 122
 
@@ -80,6 +84,8 @@ while (1):
             print("backward")
             GPIO.output(motorA1pin, GPIO.LOW)
             GPIO.output(motorA2pin, GPIO.HIGH)
+            GPIO.output(motorB1pin, GPIO.LOW)
+            GPIO.output(motorB2pin, GPIO.HIGH)
             temp1 = 0
             x = 'z'
 
