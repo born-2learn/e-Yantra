@@ -1,5 +1,5 @@
-import serial
 import arucoid
+
 
 
 '''0
@@ -93,8 +93,8 @@ class path:
 
 if __name__ == '__main__':
     ids=[4,56,121,194]
-    arucoid.getColorlist()
-    #ids = arucoid.get_aruco_list()
+    #arucoid.getColorlist()
+    ids = arucoid.get_aruco_list()
     #print(ids)
     obj=path(ids)
 
