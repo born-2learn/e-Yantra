@@ -59,14 +59,14 @@ while (1):
     if x==116:#t
         y=True
     if y==False:
-        if x == '7':
+        if x == 55:#7
             s1.ChangeDutyCycle(4.5)
             sleep(1)
             s2.ChangeDutyCycle(5)
-        if x == '8':
+        if x == 56:#8
             s1.ChangeDutyCycle(6)
             # s2.ChangeDutyCycle(k)
-        if x == '9':
+        if x == 57:#9
             s1.ChangeDutyCycle(4.5)
             s2.ChangeDutyCycle(3)
     if y:
