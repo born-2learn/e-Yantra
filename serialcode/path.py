@@ -96,7 +96,7 @@ if __name__ == '__main__':
     #arucoid.getColorlist()
     ids = arucoid.get_aruco_list()
     #print(ids)
-    obj=path(ids)
+    #obj=path(ids)
 
 
 
