@@ -12,6 +12,20 @@ motorB1pin = 24
 motorB2pin = 23
 motorBenablePin = 25
 
+
+arm = 13
+grab = 19
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(arm, GPIO.OUT)
+GPIO.setup(grab, GPIO.OUT)
+
+s1 = GPIO.PWM(arm, 50) # GPIO 17 for PWM with 50Hz
+s2 = GPIO.PWM(grab, 50) # GPIO 17 for PWM with 50Hz
+
+s1.start(6) # Initialization
+s2.start(3)
+
+
 temp1 = 1
 
 GPIO.setmode(GPIO.BCM)
@@ -44,7 +58,17 @@ while (1):
         x = ord(read_val)
     if x==116:#t
         y=True
-
+    if y==False:
+        if x == '7':
+            s1.ChangeDutyCycle(4.5)
+            sleep(1)
+            s2.ChangeDutyCycle(5)
+        if x == '8':
+            s1.ChangeDutyCycle(6)
+            # s2.ChangeDutyCycle(k)
+        if x == '9':
+            s1.ChangeDutyCycle(4.5)
+            s2.ChangeDutyCycle(3)
     if y:
         if x == 48:  # 0
             print("stop")
@@ -95,5 +119,8 @@ while (1):
     # x = 122
 
     elif x == 113:#q
+
+        s1.stop()
+        s2.stop()
         GPIO.cleanup()
         break
