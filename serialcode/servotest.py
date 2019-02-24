@@ -7,11 +7,11 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(arm, GPIO.OUT)
 GPIO.setup(grab, GPIO.OUT)
 
-s1 = GPIO.PWM(arm, 50) # GPIO 17 for PWM with 50Hz
-s2 = GPIO.PWM(grab, 50) # GPIO 17 for PWM with 50Hz
+s1 = GPIO.PWM(arm, 40) # GPIO 17 for PWM with 50Hz
+s2 = GPIO.PWM(grab, 40) # GPIO 17 for PWM with 50Hz
 
-s1.start(4.5) # Initialization
-s2.start(3)
+s1.start(6) # Initialization
+s2.start(5)
 try:
   while True:
 
