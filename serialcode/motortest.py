@@ -60,7 +60,7 @@ y = True
 
 
 def ringBuzzer():
-    buzzer = Buzzer(3)
+    buzzer = Buzzer(12)
     buzzer.on()
     sleep(5)
     buzzer.off()
