@@ -11,7 +11,7 @@ s1 = GPIO.PWM(arm, 50) # GPIO 17 for PWM with 50Hz
 s2 = GPIO.PWM(grab, 50) # GPIO 17 for PWM with 50Hz
 
 s1.start(6) # Initialization
-s2.start(5)
+s2.start(3)
 try:
   while True:
 
@@ -19,6 +19,7 @@ try:
     if k=='7':
 
       s1.ChangeDutyCycle(4.5)
+      time.sleep(1)
       s2.ChangeDutyCycle(5)
     if k == '8':
       s1.ChangeDutyCycle(6)
