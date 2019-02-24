@@ -10,8 +10,8 @@ GPIO.setup(grab, GPIO.OUT)
 s1 = GPIO.PWM(arm, 50) # GPIO 17 for PWM with 50Hz
 s2 = GPIO.PWM(grab, 50) # GPIO 17 for PWM with 50Hz
 
-s1.start(2.5) # Initialization
-s2.start(2.5)
+s1.start(6) # Initialization
+s2.start(3)
 try:
   while True:
     k=float(input('duty cycle'))
