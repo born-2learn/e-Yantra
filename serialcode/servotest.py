@@ -15,10 +15,17 @@ s2.start(3)
 try:
   while True:
 
-    k=float(input('duty cycle'))
+    k=input('duty cycle')
+    if k=='7':
 
-    s2.ChangeDutyCycle(k)
-    #s2.ChangeDutyCycle(k)
+      s1.ChangeDutyCycle(4.5)
+      s2.ChangeDutyCycle(5)
+    if k == '8':
+      s1.ChangeDutyCycle(6)
+      #s2.ChangeDutyCycle(k)
+    if k == '9':
+      s1.ChangeDutyCycle(4.5)
+      s2.ChangeDutyCycle(3)
 
 
 
