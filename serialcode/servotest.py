@@ -16,7 +16,7 @@ try:
   while True:
     k=float(input('duty cycle'))
     s1.ChangeDutyCycle(k)
-    s2.ChangeDutyCycle(k)
+    #s2.ChangeDutyCycle(k)
 
 
 
