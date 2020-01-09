@@ -1,5 +1,8 @@
-# e-Yantra
-The e-Yantra Ant Bot theme. Team eYRC #1346
+# e-Yantra, IIT Bombay
+This repository contains the code of the Robotics Competition held at IIT, Bombay, 2018-19.
+The code belongs to the e-Yantra Ant Bot theme. 
+
+Team ID:  eYRC #1346
 
 ## Task
 
