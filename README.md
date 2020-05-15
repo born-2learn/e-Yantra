@@ -33,13 +33,9 @@ Some of the tasks include:
 
 All tasks were achieved using Aruco Markers and Image Processing.
 
-### Made by [Syed Farhan Ahmad](https://www.linkedin.com/in/syedfarhanahmad/)
-
-## Features ##
-
 [(Back to top)](#table-of-content)
 
-
+### Made by [Syed Farhan Ahmad](https://www.linkedin.com/in/syedfarhanahmad/)
 
 
 ## Reporting Bugs ##
